@@ -2,8 +2,11 @@ go 1.19
 
 use (
 	./boring
+	./patterns/daisyChain
 	./patterns/generator
 	./patterns/multiplexing
+	./patterns/quit
+	./patterns/quitAck
 	./patterns/select
 	./patterns/sequencing
 	./patterns/timeout

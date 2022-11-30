@@ -1,3 +1,3 @@
-module patterns/sequencing
+module patterns/select
 
 go 1.19
