@@ -4,4 +4,8 @@ use (
 	./boring
 	./patterns/generator
 	./patterns/multiplexing
+	./patterns/select
+	./patterns/sequencing
+	./patterns/timeout
+	./patterns/timeoutAgain
 )

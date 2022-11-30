@@ -6,11 +6,11 @@ import (
 	"time"
 )
 
-// main listens for data from the channels
+// main listens for data from the channel(s)
 func main() {
 	c := fanIn(boring("Joe"), boring("Ann"))
 	for i := 0; i < 10; i++ {
-		fmt.Println(<-c) // rx an expression and print
+		fmt.Println(<-c)
 	}
 	fmt.Println("You're boring, I'm leaving")
 }
@@ -18,14 +18,15 @@ func main() {
 // fanIn funnels 2 channels to one
 func fanIn(input1, input2 <-chan string) <-chan string {
 	c := make(chan string)
+	// this has the same behavior as sequencing, but only uses one go routine here instead of 2
 	go func() {
 		for {
-			c <- <-input1
-		}
-	}()
-	go func() {
-		for {
-			c <- <-input2
+			select {
+			case s := <-input1:
+				c <- s
+			case s := <-input2:
+				c <- s
+			}
 		}
 	}()
 	return c
